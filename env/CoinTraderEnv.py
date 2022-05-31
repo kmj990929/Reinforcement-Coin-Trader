@@ -26,7 +26,7 @@ RISE = 110
 FALL = 10550
 BOX = 13130
 
-class OHLCVEnv(gym.Env):
+class OhlcvEnv(gym.Env):
 
     def __init__(self, infoname, window_size, path, ep_len, train=True, show_trade=True):
         self.train= train

@@ -22,7 +22,7 @@ FREQ = 10
 EP = 100
 LR = 1e-4
 DISCOUNT = 0.9999
-BASEDIR = "/content/drive/MyDrive/tf_deep_rl_trader"
+BASEDIR = "/content/Reinforcement-Coin-Trader"
 NAME = None
 
 def create_network_spec():
