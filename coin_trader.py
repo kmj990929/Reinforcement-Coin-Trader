@@ -26,20 +26,9 @@ BASEDIR = "/content/Reinforcement-Coin-Trader"
 NAME = None
 
 def create_network_spec():
-    network_spec = dict(
-        type='auto',
-        size=512,
-        depth=3
-    )
     return 'auto'
 
 def create_baseline_spec():
-    baseline_spec = dict(   # lstm-dnn-dnn인데 dnn-dnn-lstm으로 바뀜.
-        type='auto',
-        size=32,
-        depth=2,
-        rnn=20
-    )
     return 'auto'
 
 def set_agent(agent_type, environment, network_spec, baseline_spec):
@@ -77,7 +66,7 @@ def set_agent(agent_type, environment, network_spec, baseline_spec):
         likelihood_ratio_clipping=0.2,
         subsampling_fraction=0.2,  # 0.1
         multi_step=10, # custom,optimization_steps -> multi_step instead
-        summarizer = dict(directory='/content/drive/MyDrive/tf_deep_rl_trader/record',
+        summarizer = dict(directory=BASEDIR+'/record',
                           filename= f"{NAME}",
                           max_summaries = 5 #default 5
                           # summaries="all" 
@@ -111,7 +100,7 @@ def set_agent(agent_type, environment, network_spec, baseline_spec):
                 initial_value=1.0,
                 final_value=0,
             ),
-            summarizer = dict(directory='/content/drive/MyDrive/tf_deep_rl_trader/record',
+            summarizer = dict(directory=BASEDIR+'/record',
                           filename= f"{NAME}",
                           max_summaries = 5 #default 5
                           # summaries="all" 
@@ -127,7 +116,7 @@ def set_agent(agent_type, environment, network_spec, baseline_spec):
             max_episode_timesteps=16000,
             batch_size=32,
 
-            discount = 0.9999,
+            discount = DISCOUNT,
             exploration=dict(
                 type='linear',
                 unit='episodes',
@@ -135,12 +124,13 @@ def set_agent(agent_type, environment, network_spec, baseline_spec):
                 initial_value=1.0,
                 final_value=0,
             ),
-            summarizer = dict(directory='/content/drive/MyDrive/tf_deep_rl_trader/record',
+            summarizer = dict(directory=BASEDIR+'/record',
                           filename= f"{NAME}",
                           max_summaries = 5 #default 5
                           # summaries="all" 
                           ),
-            update_frequency=FREQ
+            update_frequency=FREQ,
+            learning_rate = LR
         )
     elif (agent_type == 'dpg'):
         agent = DPGAgent(
@@ -148,12 +138,14 @@ def set_agent(agent_type, environment, network_spec, baseline_spec):
             actions = environment.set_dpg_actions(),
             batch_size=32,
             memory=50000,
-            summarizer = dict(directory='/content/drive/MyDrive/tf_deep_rl_trader/record',
+            summarizer = dict(directory=BASEDIR+'/record',
                           filename= f"{NAME}",
                           max_summaries = 5 #default 5
                           # summaries="all" 
                           ),
-            update_frequency=FREQ
+            update_frequency=FREQ,
+            learning_rate = LR
+            discount = DISCOUNT,
         )
     elif (agent_type == 'random'):
         agent = RandomAgent(
@@ -177,12 +169,13 @@ def set_agent(agent_type, environment, network_spec, baseline_spec):
                 initial_value=1.0,
                 final_value=0,
             ),
-            summarizer = dict(directory='/content/drive/MyDrive/tf_deep_rl_trader/record',
+            summarizer = dict(directory=BASEDIR+'/record',
                           filename= f"{NAME}",
                           max_summaries = 5 #default 5
                           # summaries="all" 
                           ),
-            update_frequency=FREQ
+            update_frequency=FREQ,
+            learning_rate = LR
         )
     return agent
 
