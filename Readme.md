@@ -44,8 +44,10 @@ coin_trader 실행 시 다양한 옵션으로 모델의 parameter를 변경할 �
 
 
 ## 그래프 출력
-* coin_trader.py가 정상적으로 종료되면 info 폴더에 파일이 생성됩니다.
-해당 파일명을 복사하여 visualizer.py의 FILENAME을 수정한 후, `visualizer.py`를 실행하면 해당 모델의 학습 결과를 출력할 수 있습니다.    
+* coin_trader.py가 정상적으로 종료되면 info 폴더에 파일이 생성됩니다.  
+(예시 파일은 info/sample 폴더에서 확인할 수 있습니다.)
+해당 파일명을 복사하여 visualizer.py의 FILENAME을 수정한 후, `visualizer.py`를 실행하면 해당 모델의 학습 결과를 출력할 수 있습니다.  
+(그래프 예시는 sample_result 폴더에서 확인할 수 있습니다.) 
 * record 폴더에도 새로운 폴더가 생성되는데, 이 폴더의 이름을 넣고 아래 코드를 실행하면 tensorboard에서 해당 모델의 학습 결과 (loss 등)을 확인할 수 있습니다.
 ```
 %load_ext tensorboard
