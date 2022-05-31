@@ -1,4 +1,4 @@
-# Development of a cryptocurrency(coin) investment program using reinforcement learning
+# Surf on chart: finding best RL algorithm for short-term cryptocurrency investment
 
 강화학습 알고리즘 (A2C, PPO, DQN, DDQN)으로 학습한 코인 투자 모델 개발
 
